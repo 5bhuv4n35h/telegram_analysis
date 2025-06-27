@@ -1,3 +1,4 @@
+[![Upload Python Package](https://github.com/5bhuv4n35h/telegram_analysis/actions/workflows/python-publish.yml/badge.svg)](https://github.com/5bhuv4n35h/telegram_analysis/actions/workflows/python-publish.yml)
 # Telegram Analyzer
 
 A Python toolkit for analyzing and visualizing Telegram chat exports.
