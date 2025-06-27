@@ -1,0 +1,19 @@
+# requirements.txt
+pandas>=1.0.0
+numpy>=1.18.0
+matplotlib>=3.1.0
+seaborn>=0.10.0
+nltk>=3.5.0
+tqdm>=4.0.0
+wordcloud>=1.8.0
+emoji>=1.2.0
+
+# Optional dependencies for interactive visualizations
+# Uncomment to install these packages
+# plotly>=5.0.0
+# networkx>=2.6.0
+# scipy>=1.7.0
+
+# Full installation with all features
+# Uncomment to install all optional dependencies
+# textblob>=0.15.0

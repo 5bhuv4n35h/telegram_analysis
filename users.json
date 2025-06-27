@@ -1,0 +1,14 @@
+{
+  "test": {
+    "password_hash": "6748d136427663654a69faa1ee2b672c7a69b6fefa5b08233bdb93e8795f52d2",
+    "salt": "23cbdf62ebff8cc916bb17c66b99dc0e",
+    "email": "test@test.com",
+    "created_at": "2025-03-06T22:35:02.030187",
+    "last_login": "2025-03-16T18:53:52.088926",
+    "flow_progress": {
+      "current_step": 4,
+      "current_step_name": "analyze",
+      "last_updated": "2025-03-06T23:07:39.545026"
+    }
+  }
+}

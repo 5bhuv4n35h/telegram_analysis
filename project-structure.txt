@@ -1,0 +1,19 @@
+telegram_analyzer/
+├── telegram_analyzer/
+│   ├── __init__.py                 # Package initialization
+│   ├── main.py                     # Main entry point (updated for web server)
+│   ├── parser.py                   # Telegram data parser
+│   ├── analyzer.py                 # Chat analysis
+│   ├── visualizer.py               # Static visualization generation
+│   ├── enhanced_visualizer.py      # Interactive visualization using Plotly
+│   ├── report.py                   # Report generation (updated)
+│   ├── utils.py                    # Utility functions
+│   ├── web_server.py               # NEW: Flask web server implementation
+│   ├── stats_export.py             # NEW: JSON export for web API
+│   └── templates/                  # NEW: HTML templates for web server
+│       ├── index.html              # Landing page template
+│       └── 404.html                # Error page template
+├── setup.py                        # Updated with Flask dependency 
+├── pyproject.toml                  # PEP 517 configuration
+├── requirements.txt                # Core and optional dependencies
+└── README.md                       # Project documentation
