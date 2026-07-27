@@ -1,0 +1,957 @@
+
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <title>Telegram Insights | Intelligence Report</title>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+            <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+            <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+            <style>
+                :root {
+                    --primary: #0088cc;
+                    --primary-glow: rgba(0, 136, 204, 0.3);
+                    --bg-dark: #0e1621;
+                    --bg-card: #17212b;
+                    --text-main: #ffffff;
+                    --text-muted: #708499;
+                    --glass: rgba(23, 33, 43, 0.7);
+                    --border: rgba(255, 255, 255, 0.08);
+                }
+
+                body { 
+                    font-family: 'Inter', sans-serif; 
+                    background-color: var(--bg-dark);
+                    color: var(--text-main);
+                    padding-top: 80px;
+                    line-height: 1.6;
+                }
+
+                .navbar {
+                    background: rgba(14, 22, 33, 0.85) !important;
+                    backdrop-filter: blur(15px);
+                    border-bottom: 1px solid var(--border);
+                    padding: 15px 0;
+                }
+
+                .navbar-brand {
+                    font-weight: 800;
+                    letter-spacing: -0.5px;
+                    color: var(--primary) !important;
+                }
+
+                .nav-link {
+                    font-weight: 600;
+                    font-size: 0.9rem;
+                    color: var(--text-muted) !important;
+                    transition: all 0.3s ease;
+                }
+
+                .nav-link:hover, .nav-link.active {
+                    color: var(--text-main) !important;
+                }
+
+                .section {
+                    padding: 40px 0;
+                    scroll-margin-top: 100px;
+                }
+
+                .premium-card {
+                    background: var(--bg-card);
+                    border-radius: 20px;
+                    border: 1px solid var(--border);
+                    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+                    margin-bottom: 30px;
+                    overflow: hidden;
+                    transition: transform 0.3s ease;
+                }
+
+                .card-header {
+                    background: rgba(255,255,255,0.02) !important;
+                    border-bottom: 1px solid var(--border) !important;
+                    padding: 20px 25px !important;
+                }
+
+                .card-header h2 {
+                    font-size: 1.5rem;
+                    font-weight: 700;
+                    margin: 0;
+                    display: flex;
+                    align-items: center;
+                    gap: 12px;
+                }
+
+                .card-body {
+                    padding: 25px;
+                }
+
+                .stat-box {
+                    background: rgba(255,255,255,0.03);
+                    border-radius: 16px;
+                    padding: 20px;
+                    text-align: center;
+                    border: 1px solid var(--border);
+                    height: 100%;
+                }
+
+                .stat-value {
+                    font-size: 2rem;
+                    font-weight: 800;
+                    color: var(--primary);
+                    text-shadow: 0 0 15px var(--primary-glow);
+                }
+
+                .stat-label {
+                    color: var(--text-muted);
+                    font-size: 0.85rem;
+                    font-weight: 600;
+                    text-transform: uppercase;
+                    margin-top: 8px;
+                }
+
+                .viz-container {
+                    background: #111b27;
+                    border-radius: 12px;
+                    padding: 15px;
+                    margin-top: 20px;
+                    border: 1px solid var(--border);
+                }
+
+                .img-fluid {
+                    border-radius: 8px;
+                    filter: saturate(1.1);
+                    transition: transform 0.3s ease;
+                }
+
+                .img-fluid:hover {
+                    transform: scale(1.02);
+                }
+
+                .archetype-card {
+                    background: rgba(255, 255, 255, 0.03);
+                    padding: 15px;
+                    border-radius: 12px;
+                    margin-bottom: 12px;
+                    border: 1px solid var(--border);
+                    transition: all 0.3s ease;
+                }
+
+                .archetype-card:hover {
+                    background: rgba(0, 136, 204, 0.08);
+                    border-color: var(--primary);
+                    transform: translateX(5px);
+                }
+
+                .archetype-grid {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 10px;
+                }
+
+                iframe {
+                    border-radius: 12px;
+                    background: white;
+                }
+
+                .table {
+                    color: var(--text-main) !important;
+                    border-color: var(--border) !important;
+                }
+
+                .table thead th {
+                    background: rgba(255,255,255,0.03);
+                    border-bottom: 2px solid var(--border);
+                    color: var(--text-muted);
+                    font-size: 0.8rem;
+                    text-transform: uppercase;
+                }
+
+                .table-striped tbody tr:nth-of-type(odd) {
+                    background-color: rgba(255,255,255,0.01);
+                }
+
+                .user-list li {
+                    background: rgba(255,255,255,0.03);
+                    border: 1px solid var(--border);
+                    border-radius: 10px;
+                    padding: 10px 15px;
+                    margin-bottom: 8px;
+                    list-style: none;
+                }
+
+                .badge-premium {
+                    background: var(--primary-glow);
+                    color: var(--primary);
+                    border: 1px solid var(--primary);
+                }
+
+                ::-webkit-scrollbar {
+                    width: 8px;
+                }
+                ::-webkit-scrollbar-track {
+                    background: var(--bg-dark);
+                }
+                ::-webkit-scrollbar-thumb {
+                    background: var(--bg-card);
+                    border-radius: 10px;
+                }
+                ::-webkit-scrollbar-thumb:hover {
+                    background: var(--text-muted);
+                }
+            </style>
+        </head>
+        <body>
+            <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+                <div class="container">
+                    <a class="navbar-brand" href="#"><i class="fab fa-telegram"></i> INSIGHTS</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav ms-auto">
+                            <li class="nav-item"><a class="nav-link" href="#overview">Overview</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#user-activity">Users</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#activity-patterns">Patterns</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#content-analysis">Content</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#online-presence">Presence</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#intelligence">Intelligence</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#psychological">Wellness</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#social-dynamics">Social</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#thematic">Thematic</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#interaction">Interaction</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#interactive-viz">Interactive</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            <div class="container">
+        
+        <div id="overview" class="section">
+            <div class="executive-summary-banner mb-4 p-4" style="background: var(--glass); border-radius: 15px; border-left: 5px solid var(--primary); backdrop-filter: blur(10px); position: relative; overflow: hidden;">
+                <div class="d-flex justify-content-between align-items-start">
+                    <div>
+                        <h4 style="color: var(--primary); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px;"><i class="fas fa-microchip"></i> Intelligence Summary</h4>
+                        <p style="font-size: 1.1rem; margin-bottom: 0; font-weight: 500;">This dataset covers 1717 days of intelligence across 2 participants. The conversation maintains a professional and balanced tone. Communication is primarily text-driven and linguistic. </p>
+                    </div>
+                    <div class="stability-tag p-2 px-3" style="background: rgba(0, 255, 127, 0.1); border: 1px solid rgba(0, 255, 127, 0.2); border-radius: 30px; font-size: 0.8rem; font-weight: 700; color: #00ff7f;">
+                        STABILITY: 100% SECURE
+                    </div>
+                </div>
+            </div>
+            
+            <div class="premium-card">
+                <div class="card-header">
+                    <h2><i class="fas fa-rocket"></i> Executive Summary</h2>
+                </div>
+                <div class="card-body">
+                    <div class="row g-4">
+        
+                        <div class="col-md-3">
+                            <div class="stat-box">
+                                <i class="fas fa-comments" style="color: var(--text-muted); margin-bottom: 12px;"></i>
+                                <div class="stat-value">299,730</div>
+                                <div class="stat-label">Total Messages</div>
+                            </div>
+                        </div>
+                
+                        <div class="col-md-3">
+                            <div class="stat-box">
+                                <i class="fas fa-users" style="color: var(--text-muted); margin-bottom: 12px;"></i>
+                                <div class="stat-value">2</div>
+                                <div class="stat-label">Active Users</div>
+                            </div>
+                        </div>
+                
+                        <div class="col-md-3">
+                            <div class="stat-box">
+                                <i class="fas fa-calendar-alt" style="color: var(--text-muted); margin-bottom: 12px;"></i>
+                                <div class="stat-value">1,717</div>
+                                <div class="stat-label">Time Range (Days)</div>
+                            </div>
+                        </div>
+                
+                        <div class="col-md-3">
+                            <div class="stat-box">
+                                <i class="fas fa-text-width" style="color: var(--text-muted); margin-bottom: 12px;"></i>
+                                <div class="stat-value">26.1</div>
+                                <div class="stat-label">Avg. Length</div>
+                            </div>
+                        </div>
+                
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="user-activity" class="section">
+            <div class="premium-card">
+                <div class="card-header">
+                    <h2><i class="fas fa-users"></i> User Intelligence</h2>
+                </div>
+                <div class="card-body">
+        
+                    <div class="viz-container">
+                        <img src="user_activity.png" alt="User Activity" class="img-fluid w-100">
+                    </div>
+            
+                    <div class="mt-4">
+                        <h3 class="mb-3" style="font-size: 1.1rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px;">Top Contributors</h3>
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Participant</th>
+                                        <th class="text-end">Activity</th>
+                                        <th class="text-end" style="width: 200px;">Personality Profile (OCEAN)</th>
+                                        <th class="text-end">Dominant Emotion</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+            
+                                    <tr>
+                                        <td style="font-weight: 600;">
+                                            █████████ ████████
+                                            <div style="font-size: 0.65rem; color: var(--primary); font-family: 'Courier New', monospace; letter-spacing: 1px;">DNA-1N0P</div>
+                                        </td>
+                                        <td class="text-end" style="color: var(--primary);">
+                                            166,212 msgs
+                                            <div style="font-size: 0.7rem; color: var(--text-muted);">30.7 avg chars</div>
+                                        </td>
+                                        <td>
+                                            <div style="font-size: 0.6rem; color: var(--text-muted); display: flex; justify-content: space-between;"><span>O</span><span>50.8%</span></div><div class="progress mb-1" style="height: 4px; background: rgba(255,255,255,0.05);"><div class="progress-bar" style="width: 50.8%; background: #0088cc;"></div></div><div style="font-size: 0.6rem; color: var(--text-muted); display: flex; justify-content: space-between;"><span>C</span><span>27.7%</span></div><div class="progress mb-1" style="height: 4px; background: rgba(255,255,255,0.05);"><div class="progress-bar" style="width: 27.7%; background: #0088cc;"></div></div><div style="font-size: 0.6rem; color: var(--text-muted); display: flex; justify-content: space-between;"><span>E</span><span>55.5%</span></div><div class="progress mb-1" style="height: 4px; background: rgba(255,255,255,0.05);"><div class="progress-bar" style="width: 55.5%; background: #0088cc;"></div></div><div style="font-size: 0.6rem; color: var(--text-muted); display: flex; justify-content: space-between;"><span>A</span><span>38.1%</span></div><div class="progress mb-1" style="height: 4px; background: rgba(255,255,255,0.05);"><div class="progress-bar" style="width: 38.1%; background: #00ff7f;"></div></div><div style="font-size: 0.6rem; color: var(--text-muted); display: flex; justify-content: space-between;"><span>N</span><span>28.4%</span></div><div class="progress mb-1" style="height: 4px; background: rgba(255,255,255,0.05);"><div class="progress-bar" style="width: 28.4%; background: #ff4d4d;"></div></div>
+                                        </td>
+                                        <td class="text-end">
+                                            <span class="badge" style="background: rgba(0, 136, 204, 0.2); color: var(--primary); border: 1px solid var(--primary);">Neutral</span>
+                                        </td>
+                                    </tr>
+                
+                                    <tr>
+                                        <td style="font-weight: 600;">
+                                            Sheldor
+                                            <div style="font-size: 0.65rem; color: var(--primary); font-family: 'Courier New', monospace; letter-spacing: 1px;">DNA-1N0P</div>
+                                        </td>
+                                        <td class="text-end" style="color: var(--primary);">
+                                            132,827 msgs
+                                            <div style="font-size: 0.7rem; color: var(--text-muted);">20.3 avg chars</div>
+                                        </td>
+                                        <td>
+                                            <div style="font-size: 0.6rem; color: var(--text-muted); display: flex; justify-content: space-between;"><span>O</span><span>26.5%</span></div><div class="progress mb-1" style="height: 4px; background: rgba(255,255,255,0.05);"><div class="progress-bar" style="width: 26.5%; background: #0088cc;"></div></div><div style="font-size: 0.6rem; color: var(--text-muted); display: flex; justify-content: space-between;"><span>C</span><span>25.1%</span></div><div class="progress mb-1" style="height: 4px; background: rgba(255,255,255,0.05);"><div class="progress-bar" style="width: 25.1%; background: #0088cc;"></div></div><div style="font-size: 0.6rem; color: var(--text-muted); display: flex; justify-content: space-between;"><span>E</span><span>44.3%</span></div><div class="progress mb-1" style="height: 4px; background: rgba(255,255,255,0.05);"><div class="progress-bar" style="width: 44.3%; background: #0088cc;"></div></div><div style="font-size: 0.6rem; color: var(--text-muted); display: flex; justify-content: space-between;"><span>A</span><span>31.8%</span></div><div class="progress mb-1" style="height: 4px; background: rgba(255,255,255,0.05);"><div class="progress-bar" style="width: 31.8%; background: #00ff7f;"></div></div><div style="font-size: 0.6rem; color: var(--text-muted); display: flex; justify-content: space-between;"><span>N</span><span>24.6%</span></div><div class="progress mb-1" style="height: 4px; background: rgba(255,255,255,0.05);"><div class="progress-bar" style="width: 24.6%; background: #ff4d4d;"></div></div>
+                                        </td>
+                                        <td class="text-end">
+                                            <span class="badge" style="background: rgba(0, 136, 204, 0.2); color: var(--primary); border: 1px solid var(--primary);">Neutral</span>
+                                        </td>
+                                    </tr>
+                
+                                    <tr>
+                                        <td style="font-weight: 600;">
+                                            None
+                                            <div style="font-size: 0.65rem; color: var(--primary); font-family: 'Courier New', monospace; letter-spacing: 1px;">DNA-N/A</div>
+                                        </td>
+                                        <td class="text-end" style="color: var(--primary);">
+                                            0 msgs
+                                            <div style="font-size: 0.7rem; color: var(--text-muted);">nan avg chars</div>
+                                        </td>
+                                        <td>
+                                            
+                                        </td>
+                                        <td class="text-end">
+                                            <span class="badge" style="background: rgba(0, 136, 204, 0.2); color: var(--primary); border: 1px solid var(--primary);">Neutral</span>
+                                        </td>
+                                    </tr>
+                
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+            
+                </div>
+            </div>
+        </div>
+        
+        <div id="activity-patterns" class="section">
+            <div class="premium-card">
+                <div class="card-header">
+                    <h2><i class="fas fa-wave-square"></i> Communication Patterns</h2>
+                </div>
+                <div class="card-body">
+                    <div class="row g-4">
+        
+                        <div class="col-md-6">
+                            <div class="stat-box">
+                                <div class="stat-value" style="font-size: 1.5rem;">23:00</div>
+                                <div class="stat-label">Peak Activity Hour</div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="stat-box">
+                                <div class="stat-value" style="font-size: 1.5rem;">Sunday</div>
+                                <div class="stat-label">Most Active Day</div>
+                            </div>
+                        </div>
+                
+                    <div class="col-12">
+                        <div class="viz-container">
+                            <img src="activity_heatmap.png" alt="activity_heatmap.png" class="img-fluid w-100">
+                        </div>
+                    </div>
+                
+                    <div class="col-12">
+                        <div class="viz-container">
+                            <img src="weekly_activity.png" alt="weekly_activity.png" class="img-fluid w-100">
+                        </div>
+                    </div>
+                
+                    <div class="col-12">
+                        <div class="viz-container">
+                            <img src="conversation_flow.png" alt="conversation_flow.png" class="img-fluid w-100">
+                        </div>
+                    </div>
+                
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="content-analysis" class="section">
+            <div class="premium-card">
+                <div class="card-header">
+                    <h2><i class="fas fa-microchip"></i> Semantic Analysis</h2>
+                </div>
+                <div class="card-body">
+                    <div class="row g-4">
+        
+                        <div class="col-md-6">
+                            <h4 style="font-size: 0.9rem; color: var(--text-muted); text-transform: uppercase; margin-bottom: 15px;">Vocabulary Cloud</h4>
+                            <div class="viz-container">
+                                <img src="wordcloud.png" alt="Vocabulary Cloud" class="img-fluid w-100">
+                            </div>
+                        </div>
+                
+                        <div class="col-md-6">
+                            <h4 style="font-size: 0.9rem; color: var(--text-muted); text-transform: uppercase; margin-bottom: 15px;">Word Frequency</h4>
+                            <div class="viz-container">
+                                <img src="word_frequency.png" alt="Word Frequency" class="img-fluid w-100">
+                            </div>
+                        </div>
+                
+                        <div class="col-md-6">
+                            <h4 style="font-size: 0.9rem; color: var(--text-muted); text-transform: uppercase; margin-bottom: 15px;">Emotional Landscape</h4>
+                            <div class="viz-container">
+                                <img src="sentiment_distribution.png" alt="Emotional Landscape" class="img-fluid w-100">
+                            </div>
+                        </div>
+                
+                        <div class="col-md-6">
+                            <h4 style="font-size: 0.9rem; color: var(--text-muted); text-transform: uppercase; margin-bottom: 15px;">Thematic Clusters</h4>
+                            <div class="viz-container">
+                                <img src="topic_clusters.png" alt="Thematic Clusters" class="img-fluid w-100">
+                            </div>
+                        </div>
+                
+                        <div class="col-md-6">
+                            <h4 style="font-size: 0.9rem; color: var(--text-muted); text-transform: uppercase; margin-bottom: 15px;">Media Mix</h4>
+                            <div class="viz-container">
+                                <img src="media_distribution.png" alt="Media Mix" class="img-fluid w-100">
+                            </div>
+                        </div>
+                
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="online-presence" class="section">
+            <div class="premium-card">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h2><i class="fas fa-user-clock"></i> Behavioral Intelligence</h2>
+                    <a href="online_presence/online_presence_report.html" target="_blank" class="btn-premium btn-sm">
+                        Detailed View <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </div>
+                <div class="card-body">
+        <div class="row g-4 mb-4">
+                        <div class="col-md-3">
+                            <div class="stat-box">
+                                <div class="stat-value" style="font-size: 1.2rem;">█████████ ████████</div>
+                                <div class="stat-label">Power User</div>
+                            </div>
+                        </div>
+                    
+                        <div class="col-md-3">
+                            <div class="stat-box">
+                                <div class="stat-value" style="font-size: 1.2rem;">Sheldor</div>
+                                <div class="stat-label">Ghost Participant</div>
+                            </div>
+                        </div>
+                    
+                        <div class="col-md-3">
+                            <div class="stat-box">
+                                <div class="stat-value" style="font-size: 1.2rem;">Sunday</div>
+                                <div class="stat-label">Peak Traffic Day</div>
+                            </div>
+                        </div>
+                    
+                        <div class="col-md-3">
+                            <div class="stat-box">
+                                <div class="stat-value" style="font-size: 1.2rem;">Friday</div>
+                                <div class="stat-label">Quiet Day</div>
+                            </div>
+                        </div>
+                    
+                    <div class="col-12">
+                        <div class="stat-box mt-3" style="text-align: left; background: rgba(0, 136, 204, 0.05);">
+                            <div style="font-size: 0.8rem; text-transform: uppercase; color: var(--text-muted); margin-bottom: 10px;">Response Speed Intelligence</div>
+                            <div class="d-flex justify-content-between">
+                                <div class="px-3 border-end border-secondary"><strong>█████████ ████████</strong><br><span style="color: var(--primary);">0.1m</span></div> <div class="px-3 border-end border-secondary"><strong>Sheldor</strong><br><span style="color: var(--primary);">0.2m</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="intelligence" class="section">
+            <div class="premium-card">
+                <div class="card-header">
+                    <h2><i class="fas fa-brain"></i> Advanced Intelligence</h2>
+                </div>
+                <div class="card-body">
+                    <div class="row g-4">
+        
+                        <div class="col-12">
+                            <h4 style="font-size: 0.9rem; color: var(--text-muted); text-transform: uppercase; margin-bottom: 15px;">Conversation Momentum</h4>
+                            <div class="viz-container">
+                                <img src="chat_velocity.png" class="img-fluid w-100" alt="Chat Velocity">
+                            </div>
+                        </div>
+            
+                        <div class="col-md-5">
+                            <h4 style="font-size: 0.9rem; color: var(--text-muted); text-transform: uppercase; margin-bottom: 15px;">User Archetypes</h4>
+                            <div class="archetype-grid">
+            
+                                <div class="archetype-card" style="background: rgba(255,255,255,0.03); padding: 12px; border-radius: 10px; margin-bottom: 10px; border: 1px solid var(--border);">
+                                    <div class="d-flex align-items-center">
+                                        <div style="width: 40px; height: 40px; border-radius: 50%; background: var(--primary-glow); display: flex; align-items: center; justify-content: center; margin-right: 12px;">
+                                            <i class="fas fa-user" style="color: var(--primary);"></i>
+                                        </div>
+                                        <div>
+                                            <div style="font-weight: 600; font-size: 0.9rem;">█████████ ████████</div>
+                                            <div style="font-size: 0.75rem; color: var(--text-muted);">Neutral • Balanced Vibe</div>
+                                        </div>
+                                        <div class="ms-auto">
+                                            <span class="badge badge-premium">24.59</span>
+                                        </div>
+                                    </div>
+                                </div>
+                
+                                <div class="archetype-card" style="background: rgba(255,255,255,0.03); padding: 12px; border-radius: 10px; margin-bottom: 10px; border: 1px solid var(--border);">
+                                    <div class="d-flex align-items-center">
+                                        <div style="width: 40px; height: 40px; border-radius: 50%; background: var(--primary-glow); display: flex; align-items: center; justify-content: center; margin-right: 12px;">
+                                            <i class="fas fa-user" style="color: var(--primary);"></i>
+                                        </div>
+                                        <div>
+                                            <div style="font-weight: 600; font-size: 0.9rem;">Sheldor</div>
+                                            <div style="font-size: 0.75rem; color: var(--text-muted);">Neutral • Balanced Vibe</div>
+                                        </div>
+                                        <div class="ms-auto">
+                                            <span class="badge badge-premium">19.51</span>
+                                        </div>
+                                    </div>
+                                </div>
+                
+                                <div class="archetype-card" style="background: rgba(255,255,255,0.03); padding: 12px; border-radius: 10px; margin-bottom: 10px; border: 1px solid var(--border);">
+                                    <div class="d-flex align-items-center">
+                                        <div style="width: 40px; height: 40px; border-radius: 50%; background: var(--primary-glow); display: flex; align-items: center; justify-content: center; margin-right: 12px;">
+                                            <i class="fas fa-user" style="color: var(--primary);"></i>
+                                        </div>
+                                        <div>
+                                            <div style="font-weight: 600; font-size: 0.9rem;">None</div>
+                                            <div style="font-size: 0.75rem; color: var(--text-muted);">Neutral • Balanced Vibe</div>
+                                        </div>
+                                        <div class="ms-auto">
+                                            <span class="badge badge-premium">nan</span>
+                                        </div>
+                                    </div>
+                                </div>
+                
+                            </div>
+                        </div>
+            
+                        <div class="col-12 mt-4">
+                            <h4 style="font-size: 0.9rem; color: var(--text-muted); text-transform: uppercase; margin-bottom: 15px;">Intensity Bursts</h4>
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Time Period</th>
+                                            <th class="text-end">Messages</th>
+                                            <th class="text-end">Participants</th>
+                                            <th class="text-end">Intensity</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+            
+                                        <tr>
+                                            <td>Oct 09, 00:42 - 01:19</td>
+                                            <td class="text-end">373</td>
+                                            <td class="text-end">2</td>
+                                            <td class="text-end"><span class="badge" style="background: rgba(0,136,204,0.1); color: var(--primary);">10.1 msg/min</span></td>
+                                        </tr>
+                
+                                        <tr>
+                                            <td>Sep 22, 00:42 - 01:36</td>
+                                            <td class="text-end">369</td>
+                                            <td class="text-end">2</td>
+                                            <td class="text-end"><span class="badge" style="background: rgba(0,136,204,0.1); color: var(--primary);">6.8 msg/min</span></td>
+                                        </tr>
+                
+                                        <tr>
+                                            <td>Nov 08, 00:37 - 01:25</td>
+                                            <td class="text-end">348</td>
+                                            <td class="text-end">2</td>
+                                            <td class="text-end"><span class="badge" style="background: rgba(0,136,204,0.1); color: var(--primary);">7.3 msg/min</span></td>
+                                        </tr>
+                
+                                        <tr>
+                                            <td>Sep 15, 23:24 - 00:06</td>
+                                            <td class="text-end">343</td>
+                                            <td class="text-end">2</td>
+                                            <td class="text-end"><span class="badge" style="background: rgba(0,136,204,0.1); color: var(--primary);">8.1 msg/min</span></td>
+                                        </tr>
+                
+                                        <tr>
+                                            <td>Oct 05, 00:02 - 00:42</td>
+                                            <td class="text-end">296</td>
+                                            <td class="text-end">2</td>
+                                            <td class="text-end"><span class="badge" style="background: rgba(0,136,204,0.1); color: var(--primary);">7.3 msg/min</span></td>
+                                        </tr>
+                
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+            
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="psychological" class="section">
+            <div class="premium-card">
+                <div class="card-header">
+                    <h2><i class="fas fa-heartbeat"></i> Psychological & Emotional Wellness</h2>
+                </div>
+                <div class="card-body">
+                    <div class="row g-4">
+        
+                        <div class="col-12">
+                            <h4 style="font-size: 0.9rem; color: var(--text-muted); text-transform: uppercase; margin-bottom: 15px;">Wellbeing & Care Timeline</h4>
+                            <div class="viz-container">
+                                <img src="psychological_wellbeing.png" class="img-fluid w-100" alt="Psych Wellbeing">
+                            </div>
+                        </div>
+            
+                        <div class="col-md-7">
+                            <h4 style="font-size: 0.9rem; color: var(--text-muted); text-transform: uppercase; margin-bottom: 15px;">Emotional Pulse (Mood Heatmap)</h4>
+                            <div class="viz-container">
+                                <img src="mood_intensity.png" class="img-fluid w-100" alt="Mood Intensity">
+                            </div>
+                        </div>
+            
+                        <div class="col-md-5">
+                            <h4 style="font-size: 0.9rem; color: var(--text-muted); text-transform: uppercase; margin-bottom: 15px;">Emotional Breakdown</h4>
+                            <div class="d-flex flex-column gap-3">
+            
+                                <div class="p-3" style="background: rgba(255, 77, 77, 0.05); border: 1px solid rgba(255, 77, 77, 0.1); border-radius: 12px;">
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <span style="font-weight: 700; color: #ff4d4d;"><i class="fas fa-medkit"></i> Health & Wellness</span>
+                                        <span class="badge" style="background: #ff4d4d;">6946 Mentions</span>
+                                    </div>
+                                    <div style="font-size: 0.85rem; color: var(--text-muted);">
+                                        Concern for wellbeing and physical health indicators detected in discourse.
+                                    </div>
+                                </div>
+            
+                                <div class="p-3" style="background: rgba(255, 51, 153, 0.05); border: 1px solid rgba(255, 51, 153, 0.1); border-radius: 12px;">
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <span style="font-weight: 700; color: #ff3399;"><i class="fas fa-heart"></i> Love & Care</span>
+                                        <span class="badge" style="background: #ff3399;">5500 Mentions</span>
+                                    </div>
+                                    <div style="font-size: 0.85rem; color: var(--text-muted);">
+                                        High levels of empathy, support, and affection detected between participants.
+                                    </div>
+                                </div>
+            
+                                <div class="p-3" style="background: rgba(0, 136, 204, 0.05); border: 1px solid rgba(0, 136, 204, 0.1); border-radius: 12px;">
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <span style="font-weight: 700; color: var(--primary);"><i class="fas fa-vial"></i> Emotional Intensity</span>
+                                        <span class="badge" style="background: var(--primary);">0.22 Score</span>
+                                    </div>
+                                    <div style="font-size: 0.85rem; color: var(--text-muted);">
+                                        Average emotional volatility and "mood energy" across all interactions.
+                                    </div>
+                                </div>
+            
+                        <div class="col-md-12 mt-4">
+                            <h4 style="font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; margin-bottom: 15px; letter-spacing: 1px;">Clinical Issue Tracking</h4>
+                            <div class="row g-3">
+                                <div class="col-md-4">
+                                    <div class="p-3" style="background: rgba(255, 77, 77, 0.05); border: 1px solid rgba(255, 77, 77, 0.1); border-radius: 12px;">
+                                        <div style="font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase;">Acute Episodes</div>
+                                        <div style="font-size: 1.4rem; font-weight: 700; color: #ff4d4d;">2083</div>
+                                        <div style="font-size: 0.7rem; color: var(--text-muted);">Infections / Emergencies</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="p-3" style="background: rgba(0, 136, 204, 0.05); border: 1px solid rgba(0, 136, 204, 0.1); border-radius: 12px;">
+                                        <div style="font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase;">Chronic Mgmt</div>
+                                        <div style="font-size: 1.4rem; font-weight: 700; color: #0088cc;">236</div>
+                                        <div style="font-size: 0.7rem; color: var(--text-muted);">Ongoing Monitoring</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="p-3" style="background: var(--glass); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 12px;">
+                                        <div style="font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase;">Tracking Pulse</div>
+                                        <div style="font-size: 1.4rem; font-weight: 700; color: white;">1109</div>
+                                        <div style="font-size: 0.7rem; color: var(--text-muted);">Active Health Dates</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="social-dynamics" class="section">
+            <div class="premium-card">
+                <div class="card-header">
+                    <h2><i class="fas fa-users-rays"></i> Social Dynamics & Harmony</h2>
+                </div>
+                <div class="card-body">
+                    <div class="row g-4">
+        
+                        <div class="col-md-5">
+                            <h4 style="font-size: 0.9rem; color: var(--text-muted); text-transform: uppercase; margin-bottom: 15px;">Relationship Metrics</h4>
+                            <div class="d-flex flex-column gap-3">
+            
+                                <div class="p-3" style="background: rgba(0, 255, 127, 0.05); border: 1px solid rgba(0, 255, 127, 0.1); border-radius: 12px;">
+                                    <div class="d-flex justify-content-between align-items-center mb-1">
+                                        <span style="font-weight: 700; color: #00ff7f;"><i class="fas fa-handshake"></i> Most Harmonious</span>
+                                    </div>
+                                    <div style="font-size: 0.95rem; font-weight: 600;">Sheldor <-> █████████ ████████</div>
+                                    <div style="font-size: 0.8rem; color: var(--text-muted);">Confidence Score: 0.05</div>
+                                </div>
+                
+                                <div class="p-3" style="background: rgba(255, 165, 0, 0.05); border: 1px solid rgba(255, 165, 0, 0.1); border-radius: 12px;">
+                                    <div class="d-flex justify-content-between align-items-center mb-1">
+                                        <span style="font-weight: 700; color: #ffa500;"><i class="fas fa-bolt"></i> High Intensity Pair</span>
+                                    </div>
+                                    <div style="font-size: 0.95rem; font-weight: 600;">Sheldor <-> █████████ ████████</div>
+                                    <div style="font-size: 0.8rem; color: var(--text-muted);">Intensity Delta: 0.05</div>
+                                </div>
+                
+                            </div>
+                        </div>
+            
+                        <div class="col-md-7">
+                            <h4 style="font-size: 0.9rem; color: var(--text-muted); text-transform: uppercase; margin-bottom: 15px;">Interaction Proximity Map</h4>
+                            <div class="viz-container">
+                                <img src="user_interaction_network.png" class="img-fluid w-100" alt="Interaction Network">
+                            </div>
+                        </div>
+                
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="thematic" class="section">
+            <div class="premium-card">
+                <div class="card-header">
+                    <h2><i class="fas fa-microscope"></i> Thematic Landscape</h2>
+                </div>
+                <div class="card-body">
+                    <p style="color: var(--text-muted); margin-bottom: 30px;">Algorithmic extraction of recurrent semantic clusters and conceptual bigrams within the discourse.</p>
+                    <div class="d-flex flex-wrap gap-3">
+        
+                        <div class="concept-chip p-3" style="background: rgba(0, 136, 204, 0.1); border: 1px solid rgba(0, 136, 204, 0.2); border-radius: 12px; font-size: 1.4rem; font-weight: 600; color: rgba(255, 255, 255, 1.0);">
+                            https youtu
+                            <span style="font-size: 0.7rem; color: var(--primary); margin-left: 8px;">1170x</span>
+                        </div>
+            
+                        <div class="concept-chip p-3" style="background: rgba(0, 136, 204, 0.095); border: 1px solid rgba(0, 136, 204, 0.19); border-radius: 12px; font-size: 1.3499999999999999rem; font-weight: 600; color: rgba(255, 255, 255, 0.95);">
+                            https reddit
+                            <span style="font-size: 0.7rem; color: var(--primary); margin-left: 8px;">1102x</span>
+                        </div>
+            
+                        <div class="concept-chip p-3" style="background: rgba(0, 136, 204, 0.09000000000000001); border: 1px solid rgba(0, 136, 204, 0.18000000000000002); border-radius: 12px; font-size: 1.2999999999999998rem; font-weight: 600; color: rgba(255, 255, 255, 0.9);">
+                            good morning
+                            <span style="font-size: 0.7rem; color: var(--primary); margin-left: 8px;">980x</span>
+                        </div>
+            
+                        <div class="concept-chip p-3" style="background: rgba(0, 136, 204, 0.085); border: 1px solid rgba(0, 136, 204, 0.17); border-radius: 12px; font-size: 1.25rem; font-weight: 600; color: rgba(255, 255, 255, 0.85);">
+                            think much
+                            <span style="font-size: 0.7rem; color: var(--primary); margin-left: 8px;">839x</span>
+                        </div>
+            
+                        <div class="concept-chip p-3" style="background: rgba(0, 136, 204, 0.08000000000000002); border: 1px solid rgba(0, 136, 204, 0.16000000000000003); border-radius: 12px; font-size: 1.2rem; font-weight: 600; color: rgba(255, 255, 255, 0.8);">
+                            yeah kanni
+                            <span style="font-size: 0.7rem; color: var(--primary); margin-left: 8px;">656x</span>
+                        </div>
+            
+                        <div class="concept-chip p-3" style="background: rgba(0, 136, 204, 0.07500000000000001); border: 1px solid rgba(0, 136, 204, 0.15000000000000002); border-radius: 12px; font-size: 1.15rem; font-weight: 600; color: rgba(255, 255, 255, 0.75);">
+                            morning kanni
+                            <span style="font-size: 0.7rem; color: var(--primary); margin-left: 8px;">526x</span>
+                        </div>
+            
+                        <div class="concept-chip p-3" style="background: rgba(0, 136, 204, 0.06999999999999999); border: 1px solid rgba(0, 136, 204, 0.13999999999999999); border-radius: 12px; font-size: 1.0999999999999999rem; font-weight: 600; color: rgba(255, 255, 255, 0.7);">
+                            take care
+                            <span style="font-size: 0.7rem; color: var(--primary); margin-left: 8px;">436x</span>
+                        </div>
+            
+                        <div class="concept-chip p-3" style="background: rgba(0, 136, 204, 0.06499999999999999); border: 1px solid rgba(0, 136, 204, 0.12999999999999998); border-radius: 12px; font-size: 1.0499999999999998rem; font-weight: 600; color: rgba(255, 255, 255, 0.6499999999999999);">
+                            comments share
+                            <span style="font-size: 0.7rem; color: var(--primary); margin-left: 8px;">406x</span>
+                        </div>
+            
+                        <div class="concept-chip p-3" style="background: rgba(0, 136, 204, 0.06); border: 1px solid rgba(0, 136, 204, 0.12); border-radius: 12px; font-size: 0.9999999999999999rem; font-weight: 600; color: rgba(255, 255, 255, 0.6);">
+                            dont think
+                            <span style="font-size: 0.7rem; color: var(--primary); margin-left: 8px;">398x</span>
+                        </div>
+            
+                        <div class="concept-chip p-3" style="background: rgba(0, 136, 204, 0.05500000000000001); border: 1px solid rgba(0, 136, 204, 0.11000000000000001); border-radius: 12px; font-size: 0.95rem; font-weight: 600; color: rgba(255, 255, 255, 0.55);">
+                            https amzn
+                            <span style="font-size: 0.7rem; color: var(--primary); margin-left: 8px;">365x</span>
+                        </div>
+            
+                        <div class="concept-chip p-3" style="background: rgba(0, 136, 204, 0.05); border: 1px solid rgba(0, 136, 204, 0.1); border-radius: 12px; font-size: 0.8999999999999999rem; font-weight: 600; color: rgba(255, 255, 255, 0.5);">
+                            kanni good
+                            <span style="font-size: 0.7rem; color: var(--primary); margin-left: 8px;">327x</span>
+                        </div>
+            
+                        <div class="concept-chip p-3" style="background: rgba(0, 136, 204, 0.045); border: 1px solid rgba(0, 136, 204, 0.09); border-radius: 12px; font-size: 0.8499999999999999rem; font-weight: 600; color: rgba(255, 255, 255, 0.44999999999999996);">
+                            long time
+                            <span style="font-size: 0.7rem; color: var(--primary); margin-left: 8px;">320x</span>
+                        </div>
+            
+                        <div class="concept-chip p-3" style="background: rgba(0, 136, 204, 0.039999999999999994); border: 1px solid rgba(0, 136, 204, 0.07999999999999999); border-radius: 12px; font-size: 0.7999999999999998rem; font-weight: 600; color: rgba(255, 255, 255, 0.3999999999999999);">
+                            take rest
+                            <span style="font-size: 0.7rem; color: var(--primary); margin-left: 8px;">302x</span>
+                        </div>
+            
+                        <div class="concept-chip p-3" style="background: rgba(0, 136, 204, 0.034999999999999996); border: 1px solid rgba(0, 136, 204, 0.06999999999999999); border-radius: 12px; font-size: 0.7499999999999999rem; font-weight: 600; color: rgba(255, 255, 255, 0.35);">
+                            kanni like
+                            <span style="font-size: 0.7rem; color: var(--primary); margin-left: 8px;">289x</span>
+                        </div>
+            
+                        <div class="concept-chip p-3" style="background: rgba(0, 136, 204, 0.029999999999999995); border: 1px solid rgba(0, 136, 204, 0.05999999999999999); border-radius: 12px; font-size: 0.6999999999999998rem; font-weight: 600; color: rgba(255, 255, 255, 0.29999999999999993);">
+                            yeah know
+                            <span style="font-size: 0.7rem; color: var(--primary); margin-left: 8px;">271x</span>
+                        </div>
+            
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="interaction" class="section">
+            <div class="premium-card">
+                <div class="card-header">
+                    <h2><i class="fas fa-project-diagram"></i> Network Dynamics</h2>
+                </div>
+                <div class="card-body">
+                    <div class="row g-4">
+        
+                        <div class="col-md-6">
+                            <h4 style="font-size: 0.9rem; color: var(--text-muted); text-transform: uppercase; margin-bottom: 15px;">Social Connection Graph</h4>
+                            <div class="viz-container">
+                                <img src="user_interaction_network.png" alt="Social Connection Graph" class="img-fluid w-100">
+                            </div>
+                        </div>
+                
+                        <div class="col-md-6">
+                            <h4 style="font-size: 0.9rem; color: var(--text-muted); text-transform: uppercase; margin-bottom: 15px;">Latency Distribution</h4>
+                            <div class="viz-container">
+                                <img src="response_time_analysis.png" alt="Latency Distribution" class="img-fluid w-100">
+                            </div>
+                        </div>
+                
+                        <div class="col-md-6">
+                            <h4 style="font-size: 0.9rem; color: var(--text-muted); text-transform: uppercase; margin-bottom: 15px;">Expressive Landscape</h4>
+                            <div class="viz-container">
+                                <img src="emoji_usage.png" alt="Expressive Landscape" class="img-fluid w-100">
+                            </div>
+                        </div>
+                
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="interactive-viz" class="section">
+            <div class="premium-card">
+                <div class="card-header">
+                    <h2><i class="fas fa-mouse-pointer"></i> Interactive Deep Dive</h2>
+                </div>
+                <div class="card-body">
+                    <p style="color: var(--text-muted); margin-bottom: 24px;">Explore these interactive visualizations in your browser. These allow you to zoom, hover, and filter specific data points.</p>
+                    <div class="row g-4">
+        
+                        <div class="col-md-6">
+                            <h4 style="font-size: 0.9rem; color: var(--text-muted); text-transform: uppercase; margin-bottom: 15px;">Sentiment Timeline Interactive</h4>
+                            <div class="viz-container" style="height: 500px; overflow: hidden;">
+                                <iframe src="interactive/sentiment_timeline_interactive.html" style="width: 100%; height: 100%; border: none;"></iframe>
+                            </div>
+                        </div>
+            
+                        <div class="col-md-6">
+                            <h4 style="font-size: 0.9rem; color: var(--text-muted); text-transform: uppercase; margin-bottom: 15px;">User Activity Interactive</h4>
+                            <div class="viz-container" style="height: 500px; overflow: hidden;">
+                                <iframe src="interactive/user_activity_interactive.html" style="width: 100%; height: 100%; border: none;"></iframe>
+                            </div>
+                        </div>
+            
+                        <div class="col-md-6">
+                            <h4 style="font-size: 0.9rem; color: var(--text-muted); text-transform: uppercase; margin-bottom: 15px;">Hourly Distribution Interactive</h4>
+                            <div class="viz-container" style="height: 500px; overflow: hidden;">
+                                <iframe src="interactive/hourly_distribution_interactive.html" style="width: 100%; height: 100%; border: none;"></iframe>
+                            </div>
+                        </div>
+            
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+            </div>
+            
+            <footer style="margin-top: 80px; padding: 60px 0; border-top: 1px solid var(--border); text-align: center;">
+                <div class="container">
+                    <p style="color: var(--text-muted); font-size: 0.9rem;">Intelligence Report Generated on 2026-04-27 02:38</p>
+                    <p style="color: var(--primary); font-weight: 800; margin-top: 10px; letter-spacing: 2px;">TELEGRAM ANALYZER PRO</p>
+                </div>
+            </footer>
+
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+            <script>
+                document.querySelectorAll('nav a.nav-link').forEach(anchor => {
+                    anchor.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        const targetId = this.getAttribute('href');
+                        const targetElement = document.querySelector(targetId);
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    });
+                });
+            </script>
+        </body>
+        </html>
+        

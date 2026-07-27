@@ -24,10 +24,19 @@ pip install -e .
 
 ## Usage
 
-### Command Line
+### Web Interface (Premium)
+Start the modern intelligence dashboard to upload and analyze your chats interactively:
 
 ```bash
-telegram-analyzer path/to/export.json --output-dir analysis_results
+python -m telegram_analyzer.main --serve
+```
+Then visit `http://localhost:5000` in your browser.
+
+### Command Line
+For quick single-file analysis:
+
+```bash
+python -m telegram_analyzer.main path/to/export.json --output-dir analysis_results
 ```
 
 ### As a Library

@@ -1,0 +1,377 @@
+
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Telegram Chat Online Presence Analysis</title>
+            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+            <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+            <style>
+                body { 
+                    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+                    margin: 0;
+                    padding: 0;
+                    color: #333;
+                    background-color: #f8f9fa;
+                }
+                .container { padding: 2rem; }
+                .card { 
+                    margin-bottom: 1.5rem; 
+                    border-radius: 8px; 
+                    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+                }
+                .card-header { 
+                    font-weight: bold; 
+                    background-color: #f8f9fa;
+                    border-bottom: 1px solid #e9ecef;
+                }
+                .viz-img {
+                    max-width: 100%;
+                    height: auto;
+                    border-radius: 8px;
+                    margin: 1rem 0;
+                    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+                }
+                .stat-value {
+                    font-size: 1.2rem;
+                    font-weight: bold;
+                    color: #0d6efd;
+                }
+                .info-block {
+                    margin-bottom: 1rem;
+                    padding: 0.5rem;
+                    border-radius: 6px;
+                    background-color: #e9ecef;
+                }
+                .user-list {
+                    list-style-type: none;
+                    padding-left: 0;
+                }
+                .user-list li {
+                    padding: 0.5rem;
+                    margin: 0.25rem 0;
+                    background-color: #f1f3f5;
+                    border-radius: 4px;
+                }
+                .stats-grid {
+                    display: grid;
+                    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+                    gap: 1rem;
+                }
+                .navbar {
+                    background-color: #0d6efd;
+                    color: white;
+                    padding: 1rem;
+                    margin-bottom: 2rem;
+                }
+                h1, h2, h3, h4, h5, h6 {
+                    color: #0d6efd;
+                }
+                .back-link {
+                    color: white;
+                    margin-right: 1rem;
+                    text-decoration: none;
+                    display: inline-block;
+                }
+                .back-link:hover {
+                    text-decoration: underline;
+                    color: #f0f0f0;
+                }
+            </style>
+            </head>
+            <body>
+                <div class="navbar">
+                    <div class="container">
+                        <a href="report.html" class="back-link"><i class="fas fa-arrow-left"></i> Back to Main Report</a>
+                        <h1><i class="fab fa-telegram"></i> Telegram Chat Online Presence Analysis</h1>
+                    </div>
+                </div>
+                
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h2><i class="fas fa-chart-line"></i> User Activity Overview</h2>
+                            </div>
+                            <div class="card-body">
+                                <div class="stats-grid">
+    
+                                    <div class="info-block">
+                                        <h5>Most Active User (by Days)</h5>
+                                        <p class="stat-value">█████████ ████████</p>
+                                        <p>Active for 1640 days</p>
+                                    </div>
+            
+                                    <div class="info-block">
+                                        <h5>Least Active User (by Days)</h5>
+                                        <p class="stat-value">Sheldor</p>
+                                        <p>Active for only 1577 days</p>
+                                    </div>
+            
+                                    <div class="info-block">
+                                        <h5>Most Active Day</h5>
+                                        <p class="stat-value">Sunday</p>
+                                    </div>
+                                    
+                                    <div class="info-block">
+                                        <h5>Least Active Day</h5>
+                                        <p class="stat-value">Friday</p>
+                                    </div>
+            
+                                </div>
+                                
+                                <div class="row mt-4">
+                                    <div class="col-12">
+                                        <h4>Daily and Hourly Activity Patterns</h4>
+        
+                                        <img src="user_activity_heatmap.png" class="viz-img" alt="User Activity Heatmap">
+                                        <p class="text-muted">High-level view of activity by day and hour.</p>
+            
+                                        <h4>Collective Presence Heatmap (24/7)</h4>
+                                        <img src="presence_heatmap.png" class="viz-img" alt="Presence Heatmap">
+                                        <p class="text-muted">A deep dive into the group's "awake" hours across the entire week.</p>
+            
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="card">
+                            <div class="card-header">
+                                <h2><i class="fas fa-clock"></i> Time Preferences</h2>
+                            </div>
+                            <div class="card-body">
+        
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <h4>Early Birds (Morning People)</h4>
+                                        <ul class="user-list">
+            
+                                            <li><i class="fas fa-sun"></i> █████████ ████████</li>
+                
+                                            <li><i class="fas fa-sun"></i> Sheldor</li>
+                
+                                        </ul>
+                                    </div>
+            
+                                    <div class="col-md-6">
+                                        <h4>Night Owls</h4>
+                                        <ul class="user-list">
+            
+                                            <li><i class="fas fa-moon"></i> █████████ ████████</li>
+                
+                                            <li><i class="fas fa-moon"></i> Sheldor</li>
+                
+                                        </ul>
+                                    </div>
+                                </div>
+            
+                                <div class="row mt-4">
+                                    <div class="col-12">
+                                        <h4>User Time Period Preferences</h4>
+                                        <div class="row">
+            
+                                            <div class="col-md-3">
+                                                <h5>Night (10 PM - 5 AM)</h5>
+                                                <ul class="user-list">
+                    
+                                                    <li>Sheldor</li>
+                        
+                                                    <li>█████████ ████████</li>
+                        
+                                                </ul>
+                                            </div>
+                    
+                                        </div>
+                                    </div>
+                                </div>
+            
+                                <div class="row mt-4">
+                                    <div class="col-12">
+                                        <img src="user_time_preferences.png" class="viz-img" alt="User Time Preferences">
+                                        <p class="text-muted">This chart shows when each user is most active during the day.</p>
+                                    </div>
+                                </div>
+            
+                            </div>
+                        </div>
+                        
+                        <div class="card">
+                            <div class="card-header">
+                                <h2><i class="fas fa-reply"></i> Response Patterns</h2>
+                            </div>
+                            <div class="card-body">
+                                <div class="stats-grid">
+        
+                                    <div class="info-block">
+                                        <h5>Fastest Responder</h5>
+                                        <p class="stat-value">█████████ ████████ (1.7 min)</p>
+                                    </div>
+                
+                                    <div class="info-block">
+                                        <h5>Slowest Responder</h5>
+                                        <p class="stat-value">Sheldor (3.1 min)</p>
+                                    </div>
+                
+                                    <div class="info-block">
+                                        <h5>Most Responsive User</h5>
+                                        <p class="stat-value">█████████ ████████ (98.1%)</p>
+                                    </div>
+                
+                                    <div class="info-block">
+                                        <h5>Least Responsive User</h5>
+                                        <p class="stat-value">Sheldor (95.1%)</p>
+                                    </div>
+                
+                                    <div class="info-block">
+                                        <h5>Most Ignored User</h5>
+                                        <p class="stat-value">█████████ ████████ (36.3%)</p>
+                                    </div>
+                
+                                    <div class="info-block">
+                                        <h5>Most Engaging User</h5>
+                                        <p class="stat-value">Sheldor (45.4%)</p>
+                                    </div>
+                
+                                </div>
+                                
+                                <div class="row mt-4">
+                                    <div class="col-md-6">
+        
+                                        <h4>Response Time Distribution</h4>
+                                        <img src="response_time_distribution.png" class="viz-img" alt="Response Time Distribution">
+                                        <p class="text-muted">This chart shows how quickly users respond to messages.</p>
+                                        <div class="p-3 bg-light rounded mt-2">
+                                            <h6>Median Response Latency</h6>
+                                            <p class="small text-muted">Fastest: █████████ ████████ (0.1m), Sheldor (0.2m)</p>
+                                        </div>
+            
+                                    </div>
+                                    <div class="col-md-6">
+        
+                                        <h4>User Response Network</h4>
+                                        <img src="user_response_network.png" class="viz-img" alt="User Response Network">
+                                        <p class="text-muted">This network shows who responds to whom in the chat.</p>
+            
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="card">
+                            <div class="card-header">
+                                <h2><i class="fas fa-ghost"></i> "Ghosting" Analysis</h2>
+                            </div>
+                            <div class="card-body">
+                                <p>
+                                    This analysis identifies users who are present in the chat but tend not to respond to others.
+                                    A high "ghosting" score means a user reads messages but rarely responds.
+                                </p>
+        
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <h4>Top "Ghosters"</h4>
+                                        <ul class="user-list">
+            
+                                        </ul>
+                                    </div>
+            
+                                    <div class="col-md-6">
+                                        <h4>Most Engaged Users</h4>
+                                        <ul class="user-list">
+            
+                                            <li><i class="fas fa-comments"></i> Sheldor</li>
+                
+                                            <li><i class="fas fa-comments"></i> █████████ ████████</li>
+                
+                                        </ul>
+                                    </div>
+                                </div>
+            
+                                <div class="row mt-4">
+                                    <div class="col-12">
+                                        <img src="user_ghosting_scores.png" class="viz-img" alt="User Ghosting Scores">
+                                        <p class="text-muted">This chart shows users ranked by their tendency to "ghost" (be present but not respond).</p>
+                                    </div>
+                                </div>
+            
+                            </div>
+                        </div>
+                        
+                        <div class="card">
+                            <div class="card-header">
+                                <h2><i class="fas fa-calendar-check"></i> Consistency Analysis</h2>
+                            </div>
+                            <div class="card-body">
+                                <div class="stats-grid">
+        
+                                    <div class="info-block">
+                                        <h5>Most Consistent User</h5>
+                                        <p class="stat-value">█████████ ████████ (95.5%)</p>
+                                    </div>
+                
+                                    <div class="info-block">
+                                        <h5>Least Consistent User</h5>
+                                        <p class="stat-value">Sheldor (91.8%)</p>
+                                    </div>
+                
+                                    <div class="info-block">
+                                        <h5>Most Consistent Time</h5>
+                                        <p class="stat-value">Sheldor (var: 46.08)</p>
+                                    </div>
+                
+                                    <div class="info-block">
+                                        <h5>Least Consistent Time</h5>
+                                        <p class="stat-value">█████████ ████████ (var: 50.13)</p>
+                                    </div>
+                
+                                </div>
+        
+                                <div class="row mt-4">
+                                    <div class="col-12">
+                                        <img src="user_consistency_scores.png" class="viz-img" alt="User Consistency Scores">
+                                        <p class="text-muted">This chart shows users ranked by how consistently they participate in the chat.</p>
+                                    </div>
+                                </div>
+            
+                            </div>
+                        </div>
+                        
+                        <div class="card">
+                            <div class="card-header">
+                                <h2><i class="fas fa-user-slash"></i> Absence Analysis</h2>
+                            </div>
+                            <div class="card-body">
+        
+                                <div class="info-block">
+                                    <h5>Longest Absence</h5>
+                                    <p class="stat-value">Sheldor</p>
+                                    <p>Was absent for 10 days</p>
+                                    <p>From 2021-09-24 to 2021-10-04</p>
+                                </div>
+            
+                                <div class="mt-4">
+                                    <h4>Users with Significant Absences (7+ days)</h4>
+                                    <ul class="user-list">
+            
+                                        <li>Sheldor</li>
+                
+                                    </ul>
+                                </div>
+            
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <footer class="bg-light text-center p-3 mt-5">
+                <p>Generated by Telegram Chat Analyzer</p>
+            </footer>
+            
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+        </body>
+        </html>
+        
